@@ -1,0 +1,186 @@
+{
+  "version": "0.1",
+  "workspace": {
+    "name": "Untitled Workspace",
+    "sidebar": [
+      {
+        "id": "gerar-minuta-acordo-comercial",
+        "name": "Gerar Minuta do Acordo Comercial",
+        "path": "gerar-minuta-acordo-comercial",
+        "type": "form",
+        "visible": false
+      },
+      {
+        "id": "fds-analytics",
+        "name": "Analytics - Fabricas de Software",
+        "path": "fds-analytics",
+        "type": "dash",
+        "visible": true
+      }
+    ],
+    "root": null,
+    "theme": "background.png",
+    "logo_url": "logo.svg",
+    "brand_name": "Portal de Parceiros",
+    "main_color": "#D14056",
+    "font_family": "Inter",
+    "font_color": null
+  },
+  "jobs": [],
+  "hooks": [],
+  "forms": [
+    {
+      "id": "gerar-minuta-acordo-comercial",
+      "path": "gerar-minuta-acordo-comercial",
+      "title": "Gerar Minuta do Acordo Comercial",
+      "auto_start": false,
+      "allow_restart": false,
+      "end_message": null,
+      "start_message": "Preencha os dados cadastrais para receber a Minuta de Acordo Comercial.",
+      "error_message": null,
+      "welcome_title": "Gerar Minuta do Acordo Comercial",
+      "timeout_message": null,
+      "start_button_text": "Come\u00e7ar",
+      "restart_button_text": null,
+      "file": "gerar-acordo-comercial.py",
+      "workflow_position": [
+        -807.8553910128084,
+        -225.96400017734703
+      ],
+      "is_initial": true,
+      "transitions": [
+        {
+          "target_path": "3mc8s3qkejv",
+          "target_type": "scripts",
+          "label": "",
+          "id": "bhq2uxxr1u6"
+        }
+      ]
+    }
+  ],
+  "dashes": [
+    {
+      "path": "fds-analytics",
+      "title": "Analytics - Fabricas de Software",
+      "layout": {
+        "props": {},
+        "version": "0.2",
+        "slot": {
+          "20a21ae0-0fe3-4c04-9f88-02c99735b277": {
+            "id": "20a21ae0-0fe3-4c04-9f88-02c99735b277",
+            "type": "text-output",
+            "colStart": 0,
+            "colEnd": 4,
+            "rowStart": 2,
+            "rowEnd": 3,
+            "props": {
+              "size": "'medium'",
+              "text": "f\"{submissions} total submissions so far \ud83d\ude80\""
+            },
+            "events": {},
+            "variable": null
+          },
+          "5073f857-3185-4ef3-99dc-83c9f5d4d88f": {
+            "id": "5073f857-3185-4ef3-99dc-83c9f5d4d88f",
+            "type": "plotly-output",
+            "colStart": 0,
+            "colEnd": 11,
+            "rowStart": 7,
+            "rowEnd": 19,
+            "props": {
+              "fig": "get_chart()"
+            },
+            "events": {},
+            "variable": null
+          },
+          "883ccd15-70b9-4864-89bb-6928f2007513": {
+            "id": "883ccd15-70b9-4864-89bb-6928f2007513",
+            "type": "text-output",
+            "colStart": 0,
+            "colEnd": 4,
+            "rowStart": 0,
+            "rowEnd": 1,
+            "props": {
+              "size": "'large'",
+              "text": "\"F\u00e1bricasDeSoftware.com.br\""
+            },
+            "events": {},
+            "variable": null
+          },
+          "8909203a-ee50-4775-a8d4-e0e98a8fe708": {
+            "id": "8909203a-ee50-4775-a8d4-e0e98a8fe708",
+            "type": "date-input",
+            "colStart": 8,
+            "colEnd": 11,
+            "rowStart": 3,
+            "rowEnd": 6,
+            "props": {
+              "label": "\"Filter by start date\""
+            },
+            "events": {},
+            "variable": "selected_start_date"
+          },
+          "9fdde9fe-0192-4fa2-b58c-65d8d43d6a51": {
+            "id": "9fdde9fe-0192-4fa2-b58c-65d8d43d6a51",
+            "type": "pandas-output",
+            "colStart": 0,
+            "colEnd": 11,
+            "rowStart": 25,
+            "rowEnd": 43,
+            "props": {
+              "df": "get_df()"
+            },
+            "events": {},
+            "variable": null
+          },
+          "2b523477-8846-4168-8cc3-0e57b1244d3b": {
+            "id": "2b523477-8846-4168-8cc3-0e57b1244d3b",
+            "type": "dropdown-input",
+            "colStart": 8,
+            "colEnd": 11,
+            "rowStart": 21,
+            "rowEnd": 24,
+            "props": {
+              "label": "\"Sort by:\"",
+              "options": "[\n    {\n      \"label\": \"Ascending\",\n      \"value\": True,\n    },\n    {\n      \"label\": \"Descending\",\n      \"value\": False,\n    },\n  ]"
+            },
+            "events": {},
+            "variable": "ascending"
+          }
+        }
+      },
+      "file": "submissions.py"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "3mc8s3qkejv",
+      "file": "clicksign_post.py",
+      "path": "3mc8s3qkejv",
+      "title": "Clicksign post",
+      "workflow_position": [
+        -348.11926601777145,
+        -229.83919163799789
+      ],
+      "transitions": [
+        {
+          "target_path": "5mjfvxrgfu6",
+          "target_type": "scripts",
+          "label": "",
+          "id": "d1w4vu66sx4"
+        }
+      ]
+    },
+    {
+      "id": "5mjfvxrgfu6",
+      "file": "slack_notification.py",
+      "path": "5mjfvxrgfu6",
+      "title": "Notify #partners slack channel",
+      "workflow_position": [
+        66.73458741128604,
+        -218.68403264957152
+      ],
+      "transitions": []
+    }
+  ]
+}
