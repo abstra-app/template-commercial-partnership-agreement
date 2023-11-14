@@ -4,18 +4,18 @@
     "name": "Untitled Workspace",
     "sidebar": [
       {
-        "id": "gerar-minuta-acordo-comercial",
-        "name": "Gerar Minuta do Acordo Comercial",
-        "path": "gerar-minuta-acordo-comercial",
-        "type": "form",
-        "visible": false
-      },
-      {
         "id": "fds-analytics",
         "name": "Analytics - Fabricas de Software",
         "path": "fds-analytics",
         "type": "dash",
         "visible": true
+      },
+      {
+        "id": "generate-commercial-agreement",
+        "name": "Generate commercial agreement",
+        "path": "generate-commercial-agreement",
+        "type": "form",
+        "visible": false
       }
     ],
     "root": null,
@@ -30,24 +30,24 @@
   "hooks": [],
   "forms": [
     {
-      "id": "gerar-minuta-acordo-comercial",
-      "path": "gerar-minuta-acordo-comercial",
-      "title": "Gerar Minuta do Acordo Comercial",
+      "id": "generate-commercial-agreement",
+      "path": "generate-commercial-agreement",
+      "title": "Generate commercial agreement",
+      "is_initial": true,
       "auto_start": false,
       "allow_restart": false,
       "end_message": null,
-      "start_message": "Preencha os dados cadastrais para receber a Minuta de Acordo Comercial.",
+      "start_message": "Fill the data to receive the commercial agreement",
       "error_message": null,
-      "welcome_title": "Gerar Minuta do Acordo Comercial",
+      "welcome_title": "Generate commercial agreement",
       "timeout_message": null,
-      "start_button_text": "Come\u00e7ar",
+      "start_button_text": "Start",
       "restart_button_text": null,
-      "file": "gerar-acordo-comercial.py",
+      "file": "generate_commercial_agreement.py",
       "workflow_position": [
         -807.8553910128084,
         -225.96400017734703
       ],
-      "is_initial": true,
       "transitions": [
         {
           "target_path": "3mc8s3qkejv",
@@ -158,6 +158,7 @@
       "file": "clicksign_post.py",
       "path": "3mc8s3qkejv",
       "title": "Clicksign post",
+      "is_initial": false,
       "workflow_position": [
         -348.11926601777145,
         -229.83919163799789
@@ -176,6 +177,7 @@
       "file": "slack_notification.py",
       "path": "5mjfvxrgfu6",
       "title": "Notify #partners slack channel",
+      "is_initial": false,
       "workflow_position": [
         66.73458741128604,
         -218.68403264957152

@@ -1,12 +1,8 @@
 from abstra.forms import *
 from abstra.workflows import *
 import requests
-import pandas as pd
 from datetime import date, datetime, timedelta
-import json
-import base64
-import os, pathlib
-from dotenv import load_dotenv
+import os
 
 # Get env variables
 cs_token = os.getenv("CLICKSIGN_TOKEN")
@@ -29,7 +25,6 @@ info_address = stage["info_address"]
 filepath = stage["filepath"]
 base64_file = stage["base64_file"]
 info_signer = stage["info_signer"]
-
 
 # Create document object
 document_data = {
@@ -89,7 +84,6 @@ all_signer_keys = [
     analyst_signer_key,
     finance_signer_key,
 ]
-
 
 # Create function to call attribute signer for each signer
 def add_signer(signer_key):

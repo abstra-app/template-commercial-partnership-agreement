@@ -1,8 +1,7 @@
 from abstra.forms import *
 from abstra.workflows import *
 import requests
-import os, pathlib
-from dotenv import load_dotenv
+import os
 
 # Get env variables
 slack_token = os.getenv("SLACK_BOT_TOKEN")
