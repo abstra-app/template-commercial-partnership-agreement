@@ -4,13 +4,6 @@
     "name": "Untitled Workspace",
     "sidebar": [
       {
-        "id": "fds-analytics",
-        "name": "Analytics - Fabricas de Software",
-        "path": "fds-analytics",
-        "type": "dash",
-        "visible": true
-      },
-      {
         "id": "generate-commercial-agreement",
         "name": "Generate commercial agreement",
         "path": "generate-commercial-agreement",
@@ -56,100 +49,6 @@
           "id": "bhq2uxxr1u6"
         }
       ]
-    }
-  ],
-  "dashes": [
-    {
-      "path": "fds-analytics",
-      "title": "Analytics - Fabricas de Software",
-      "layout": {
-        "props": {},
-        "version": "0.2",
-        "slot": {
-          "20a21ae0-0fe3-4c04-9f88-02c99735b277": {
-            "id": "20a21ae0-0fe3-4c04-9f88-02c99735b277",
-            "type": "text-output",
-            "colStart": 0,
-            "colEnd": 4,
-            "rowStart": 2,
-            "rowEnd": 3,
-            "props": {
-              "size": "'medium'",
-              "text": "f\"{submissions} total submissions so far \ud83d\ude80\""
-            },
-            "events": {},
-            "variable": null
-          },
-          "5073f857-3185-4ef3-99dc-83c9f5d4d88f": {
-            "id": "5073f857-3185-4ef3-99dc-83c9f5d4d88f",
-            "type": "plotly-output",
-            "colStart": 0,
-            "colEnd": 11,
-            "rowStart": 7,
-            "rowEnd": 19,
-            "props": {
-              "fig": "get_chart()"
-            },
-            "events": {},
-            "variable": null
-          },
-          "883ccd15-70b9-4864-89bb-6928f2007513": {
-            "id": "883ccd15-70b9-4864-89bb-6928f2007513",
-            "type": "text-output",
-            "colStart": 0,
-            "colEnd": 4,
-            "rowStart": 0,
-            "rowEnd": 1,
-            "props": {
-              "size": "'large'",
-              "text": "\"F\u00e1bricasDeSoftware.com.br\""
-            },
-            "events": {},
-            "variable": null
-          },
-          "8909203a-ee50-4775-a8d4-e0e98a8fe708": {
-            "id": "8909203a-ee50-4775-a8d4-e0e98a8fe708",
-            "type": "date-input",
-            "colStart": 8,
-            "colEnd": 11,
-            "rowStart": 3,
-            "rowEnd": 6,
-            "props": {
-              "label": "\"Filter by start date\""
-            },
-            "events": {},
-            "variable": "selected_start_date"
-          },
-          "9fdde9fe-0192-4fa2-b58c-65d8d43d6a51": {
-            "id": "9fdde9fe-0192-4fa2-b58c-65d8d43d6a51",
-            "type": "pandas-output",
-            "colStart": 0,
-            "colEnd": 11,
-            "rowStart": 25,
-            "rowEnd": 43,
-            "props": {
-              "df": "get_df()"
-            },
-            "events": {},
-            "variable": null
-          },
-          "2b523477-8846-4168-8cc3-0e57b1244d3b": {
-            "id": "2b523477-8846-4168-8cc3-0e57b1244d3b",
-            "type": "dropdown-input",
-            "colStart": 8,
-            "colEnd": 11,
-            "rowStart": 21,
-            "rowEnd": 24,
-            "props": {
-              "label": "\"Sort by:\"",
-              "options": "[\n    {\n      \"label\": \"Ascending\",\n      \"value\": True,\n    },\n    {\n      \"label\": \"Descending\",\n      \"value\": False,\n    },\n  ]"
-            },
-            "events": {},
-            "variable": "ascending"
-          }
-        }
-      },
-      "file": "submissions.py"
     }
   ],
   "scripts": [
