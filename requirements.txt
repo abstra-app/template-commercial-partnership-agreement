@@ -1,3 +1,7 @@
+pandas
+plotly
+numpy
 docxtpl==0.16.7
 python-dotenv
+abstra==2.13.2
 requests==2.31.0

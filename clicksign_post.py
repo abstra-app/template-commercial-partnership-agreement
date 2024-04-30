@@ -1,41 +1,47 @@
 from abstra.forms import *
 from abstra.workflows import *
 import requests
+import pandas as pd
 from datetime import date, datetime, timedelta
-import os
+import json
+import base64
+import os, pathlib
+from dotenv import load_dotenv
 
 # Get env variables
-cs_token = os.getenv("CLICKSIGN_TOKEN")
-cs_subdomain = "app"  # if os.getenv("ABSTRA_ENVIRONMENT") != "production" else 'app'
-manager_signer_key = os.getenv("MANAGER_SIGNER_KEY")
-analyst_signer_key = os.getenv("ANALYST_SIGNER_KEY")
-finance_signer_key = os.getenv("FINANCE_SIGNER_KEY")
+cs_token = os.getenv('CLICKSIGN_TOKEN')
+cs_subdomain = 'app' # if os.getenv("ABSTRA_ENVIRONMENT") != "production" else 'app'
+bruno_signer_key = os.getenv("BRUNO_SIGNER_KEY")
+sophia_signer_key = os.getenv("SOPHIA_SIGNER_KEY")
+catarina_signer_key = os.getenv("CATARINA_SIGNER_KEY")
 
-# Set initial variables
+# Set initial variables 
 current_date = date.today()
-date = current_date.strftime("%d/%m/%Y")
-deadline = (datetime.now() + timedelta(days=89)).strftime("%Y-%m-%dT%H:%M:%S-03:00")
+formatted_date = current_date.strftime("%d/%m/%Y")
+deadline = (datetime.now() + timedelta(days=89)).strftime('%Y-%m-%dT%H:%M:%S-03:00') 
 next = "Next"
-headers = {"Content-Type": "application/json", "Accept": "application/json"}
+headers = { 
+    "Content-Type":"application/json",
+    "Accept":"application/json"
+}
 
 # Get stage info
-stage = get_stage()
-info_register = stage["info_register"]
-info_address = stage["info_address"]
-filepath = stage["filepath"]
-base64_file = stage["base64_file"]
-info_signer = stage["info_signer"]
+register_info = get_data('register_info')
+address_info = get_data('address_info')
+filepath = get_data('filepath')
+base64_file = get_data('base64_file')
+signatory_info = get_data('signatory_info')
 
 # Create document object
 document_data = {
-    "document": {
-        "path": f"/Minutas Parceiros/{filepath}",
-        "content_base64": f"data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,{base64_file}",
-        "deadline_at": deadline,
-        "auto_close": True,
-        "locale": "pt-BR",
-        "sequence_enabled": True,
-        "block_after_refusal": False,
+    "document":{
+        "path": f"/Partners Minutes/{filepath}",
+        "content_base64":f"data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,{base64_file}",
+        "deadline_at":deadline,
+        "auto_close":True,
+        "locale":"pt-BR",
+        "sequence_enabled":True,
+        "block_after_refusal": False
     }
 }
 
@@ -43,53 +49,48 @@ document_data = {
 upload_document_response = requests.post(
     f"https://{cs_subdomain}.clicksign.com/api/v1/documents?access_token={cs_token}",
     headers=headers,
-    json=document_data,
-)
+    json=document_data)
 
 print(upload_document_response.json())
-document_key = upload_document_response.json()["document"]["key"]
+document_key = upload_document_response.json()['document']['key']
 
 
 # Create signer object
 signer_data = {
-    "signer": {
-        "email": info_signer["email"],
-        "auths": ["email"],
-        "name": info_signer["name"],
+    "signer":{
+        "email":signatory_info['email'],
+        "auths":[
+            "email"
+            ],
+        "name": signatory_info['name'],
         "documentation": "",
-        "birthday": "",
+        "birthday":"",
         "phone_number": "",
         "has_documentation": False,
         "selfie_enabled": False,
         "handwritten_enabled": False,
-        "official_document_enabled": False,
+        "official_document_enabled": False, 
         "liveness_enabled": False,
-        "facial_biometrics_enabled": False,
+        "facial_biometrics_enabled": False
     }
 }
 
 # Create signer in Clicksign
 create_signer_response = requests.post(
-    f"https://{cs_subdomain}.clicksign.com/api/v1/signers?access_token={cs_token}",
-    headers=headers,
-    json=signer_data,
-)
+    f'https://{cs_subdomain}.clicksign.com/api/v1/signers?access_token={cs_token}', 
+    headers=headers, 
+    json=signer_data)
 
 print(create_signer_response)
-signer_key = create_signer_response.json()["signer"]["key"]
+signer_key = create_signer_response.json()['signer']['key']
 
-all_signer_keys = [
-    signer_key,
-    manager_signer_key,
-    analyst_signer_key,
-    finance_signer_key,
-]
+all_signer_keys = [signer_key, bruno_signer_key, sophia_signer_key, catarina_signer_key]
 
 # Create function to call attribute signer for each signer
 def add_signer(signer_key):
     body = {
         "list": {
-            "document_key": document_key,
+            "document_key": document_key, 
             "signer_key": signer_key,
             "sign_as": "sign",
             "refusable": False,
@@ -100,24 +101,21 @@ def add_signer(signer_key):
     attribute_signer_response = requests.post(
         f"https://{cs_subdomain}.clicksign.com/api/v1/lists?access_token={cs_token}",
         headers=headers,
-        json=body,
+        json= body
     )
 
     notification_body = {
-        "request_signature_key": attribute_signer_response.json()["list"][
-            "request_signature_key"
-        ],
-        "message": f"Dearest, \n please sign this Commercial Agreement between our company and {info_register['trade_name']}. \n\n If you have any questions, reach us at sophia@abstra.app.",
+        "request_signature_key": attribute_signer_response.json()['list']['request_signature_key'],
+        "message": f"Dear, \n please sign this Commercial Agreement Minute between Abstra and {register_info['name']}. \n\n If you have any questions, please contact sophia@abstra.app."
     }
 
     notification_response = requests.post(
         f"https://{cs_subdomain}.clicksign.com/api/v1/notifications?access_token={cs_token}",
         headers=headers,
-        json=notification_body,
+        json= notification_body
     )
 
     return attribute_signer_response, notification_response
-
 
 for key in all_signer_keys:
     response = add_signer(key)
