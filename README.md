@@ -11,4 +11,12 @@ This is a functional template with the following steps:
 ![A credit onboarding workflow built in Abstra](https://github.com/user-attachments/assets/9cbcfdf7-9308-432b-a7d2-3079d814354a)
 This template integrates with Slack and Clicksign. To make these integrations work, you must add your own API Key for these services.
 
+API Key`s required:
+
+- `CLICKSIGN_TOKEN`
+- `CEO_SIGNER_KEY`
+- `CFO_SIGNER_KEY`
+- `COO_SIGNER_KEY`
+- `SLACK_BOT_TOKEN`
+  
 If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/sophia-solo?url=github-template-credit-onboarding)
