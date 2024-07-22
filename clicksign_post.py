@@ -1,19 +1,15 @@
 from abstra.forms import *
 from abstra.workflows import *
 import requests
-import pandas as pd
 from datetime import date, datetime, timedelta
-import json
-import base64
-import os, pathlib
-from dotenv import load_dotenv
+import os
 
 # Get env variables
 cs_token = os.getenv('CLICKSIGN_TOKEN')
-cs_subdomain = 'app' # if os.getenv("ABSTRA_ENVIRONMENT") != "production" else 'app'
-bruno_signer_key = os.getenv("BRUNO_SIGNER_KEY")
-sophia_signer_key = os.getenv("SOPHIA_SIGNER_KEY")
-catarina_signer_key = os.getenv("CATARINA_SIGNER_KEY")
+cs_subdomain = 'app'
+ceo_signer_key = os.getenv("CEO_SIGNER_KEY")
+cfo_signer_key = os.getenv("CFO_SIGNER_KEY")
+coo_signer_key = os.getenv("COO_SIGNER_KEY")
 
 # Set initial variables 
 current_date = date.today()
@@ -54,7 +50,6 @@ upload_document_response = requests.post(
 print(upload_document_response.json())
 document_key = upload_document_response.json()['document']['key']
 
-
 # Create signer object
 signer_data = {
     "signer":{
@@ -84,7 +79,7 @@ create_signer_response = requests.post(
 print(create_signer_response)
 signer_key = create_signer_response.json()['signer']['key']
 
-all_signer_keys = [signer_key, bruno_signer_key, sophia_signer_key, catarina_signer_key]
+all_signer_keys = [signer_key, ceo_signer_key, cfo_signer_key, coo_signer_key]
 
 # Create function to call attribute signer for each signer
 def add_signer(signer_key):

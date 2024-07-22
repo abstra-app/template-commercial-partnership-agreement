@@ -7,21 +7,17 @@
     "brand_name": "Partner Portal",
     "main_color": "#0E33D6",
     "font_color": null,
-    "font_family": "Inter",
-    "sidebar": [
-      {
-        "id": "gerar-minuta-acordo-comercial",
-        "name": "Generate commercial agreement",
-        "path": "gerar-minuta-acordo-comercial",
-        "type": "form",
-        "visible": false
-      }
-    ]
+    "font_family": "Inter"
   },
-  "visualization": [],
   "kanban": {
     "access_control": {
       "is_public": false,
+      "required_roles": []
+    }
+  },
+  "home": {
+    "access_control": {
+      "is_public": true,
       "required_roles": []
     }
   },
@@ -100,8 +96,5 @@
   ],
   "iterators": [],
   "conditions": [],
-  "signup_policy": {
-    "email_patterns": []
-  },
-  "version": "6.0"
+  "version": "10.0"
 }
