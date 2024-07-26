@@ -8,10 +8,10 @@ This is a functional template with the following steps:
 - A Python script that sends the commercial agreement to the provided email addresses and requests signatures
 - A Python script that notifies the people involved in a Slack channel called "partners"
 
-![A credit onboarding workflow built in Abstra](https://github.com/user-attachments/assets/9cbcfdf7-9308-432b-a7d2-3079d814354a)
-This template integrates with Slack and Clicksign. To make these integrations work, you must add your own API Key for these services.
+![A commercial partnership agreement generator workflow built in Abstra](https://github.com/user-attachments/assets/9cbcfdf7-9308-432b-a7d2-3079d814354a)
+This template integrates with Slack and Clicksign. To make these integrations work, you must add your own API Keys for these services.
 
-API Key`s required:
+API Keys required:
 
 - `CLICKSIGN_TOKEN`
 - `CEO_SIGNER_KEY`
