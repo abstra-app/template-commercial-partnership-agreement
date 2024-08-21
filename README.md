@@ -1,22 +1,53 @@
 # Commercial Partnership Agreement Template
+## How it works:
 
-Use Abstra Workflows to build custom commercial agreement processes.
+This project includes a commercial partnership agreement generator process implemented with Abstra and Python scripts. The new partner's personal information, along with the company information, is collected, and a contract is automatically generated based on it.
 
-This is a functional template with the following steps:
+Integrations: 
+  - Docusign
+  - Slack
 
-- An onboarding form that collects signer data and company registration, address, and payment information. In the end, it automatically generates a commercial agreement with the provided data
-- A Python script that sends the commercial agreement to the provided email addresses and requests signatures
-- A Python script that notifies the people involved in a Slack channel called "partners"
+To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/sophia-solo?url=template-commercial-partnership-agreement)
 
 ![A commercial partnership agreement generator workflow built in Abstra](https://github.com/user-attachments/assets/9cbcfdf7-9308-432b-a7d2-3079d814354a)
-This template integrates with Slack and Clicksign. To make these integrations work, you must add your own API Keys for these services.
 
-API Keys required:
+## Initial Configuration:
+To use this project, some initial configurations are necessary:
+1. **Python Version**: Ensure Python version 3.9 or higher is installed on your system.
+2. **Environment Variables**:
 
-- `CLICKSIGN_TOKEN`
-- `CEO_SIGNER_KEY`
-- `CFO_SIGNER_KEY`
-- `COO_SIGNER_KEY`
-- `SLACK_BOT_TOKEN`
+    The following environment variables are required for both local development and online deployment:
   
-If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/sophia-solo?url=github-template-credit-onboarding)
+    - `SLACK_BOT_TOKEN`: Slack Tocken to notify the partners about the new partnership agreement on Slack
+    - `DOCUSIGN_ACCESS_TOKEN`: DocuSign Acess Token used for sending the contract to sign
+    - `DOCUSIGN_API_ID`: DocuSign API account ID used for sending the contract to sign
+    - `DOCUSIGN_AUTH_SERVER`: DocuSign Authentication Key for sending the contract to sign 
+    - `API_BASE_PATH`: Base path where the contract will be uploaded on DocuSign service
+  
+    For local development, create a `.env` file at the root of the project and add the variables listed above (as in `.env.examples`). For online deployment, configure these variables in your [environment settings](https://docs.abstra.io/cloud/envvars). 
+
+3. **Dependencies**: To install the necessary dependencies for this project, a `requirements.txt` file is provided. This file includes all the required libraries.
+
+   Follow these steps to install the dependencies:
+
+   1. Open your terminal and navigate to the project directory.
+   2. Run the following command to install the dependencies from `requirements.txt`:
+  
+      ```sh
+      pip install -r requirements.txt
+      ```
+## General Workflow:
+To implement this system use the following scripts:
+
+### Commercial Partnership Agreement Generation:
+For collecting information about the new partner, along with the company, and with it create a commercial partnership agreement, use:
+  - **generate_commercial_agreement.py**: Script to generate a form for collecting information and, based on that information, generate a partnership contract that is available for download at the end of the form.
+
+### Commercial Partnership Agreement Signing:
+For sending the contract to be signed by the parties involved, use:
+  - **clicksign_post.py**: Script to send the contract to be signed by the parties involved using DocuSign API.
+
+### Slack Notification:
+  - **slack_notification.py**: Script to send a notification on Slack about the contract generation and pending signatures.
+
+If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/sophia-solo?url=template-commercial-partnership-agreement)
