@@ -24,9 +24,14 @@ To use this project, some initial configurations are necessary:
     - `DOCUSIGN_AUTH_SERVER`: DocuSign Authentication Key for sending the contract to sign 
     - `API_BASE_PATH`: Base path where the contract will be uploaded on DocuSign service
   
+   In the scripts, we assume that the manager is the signer involved in the partner adimission process. Below are some informations regarding the manager. If another party is involved, please change the key name or add new ones as needed on the .env file:
+
+   - `MANAGER_NAME`: Manager`s name
+   - `MANAGER_EMAIL`: Manager`s email
+  
     For local development, create a `.env` file at the root of the project and add the variables listed above (as in `.env.examples`). For online deployment, configure these variables in your [environment settings](https://docs.abstra.io/cloud/envvars). 
 
-3. **Dependencies**: To install the necessary dependencies for this project, a `requirements.txt` file is provided. This file includes all the required libraries.
+4. **Dependencies**: To install the necessary dependencies for this project, a `requirements.txt` file is provided. This file includes all the required libraries.
 
    Follow these steps to install the dependencies:
 
@@ -36,6 +41,10 @@ To use this project, some initial configurations are necessary:
       ```sh
       pip install -r requirements.txt
       ```
+5. **Commercial Partnership Agreement Template**: In the files, there is an agreement template called `Commercial Partnership Agreement.docx`. If you want to use your own agreement template, please replace ours with yours. Use the following tags in the document where you want specific information to be inserted:
+
+    - {{partner_name}}, {{partner_ein}}, {{partner_email}}, {{partner_address}}, {{partner_zipcode}}, {{partner_state}}, {{partner_beneficiary}}, {{partner_bank}}, {{partner_account}}, {{date}}
+   
 ## General Workflow:
 To implement this system use the following scripts:
 
