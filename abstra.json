@@ -4,10 +4,12 @@
     "name": "Untitled Workspace",
     "theme": "#F8F8F8",
     "logo_url": "logo.png",
+    "favicon_url": null,
     "brand_name": "Partner Portal",
     "main_color": "#0E33D6",
     "font_color": null,
-    "font_family": "Inter"
+    "font_family": "Inter",
+    "language": "en"
   },
   "kanban": {
     "access_control": {
@@ -96,5 +98,5 @@
   ],
   "iterators": [],
   "conditions": [],
-  "version": "10.0"
+  "version": "11.0"
 }

@@ -3,5 +3,5 @@ plotly
 numpy
 docxtpl==0.16.7
 python-dotenv
-abstra==2.19.7
+abstra==2.23.2
 requests==2.31.0
