@@ -41,10 +41,18 @@ To use this project, some initial configurations are necessary:
       ```sh
       pip install -r requirements.txt
       ```
-5. **Commercial Partnership Agreement Template**: In the files, there is an agreement template called `Commercial Partnership Agreement.docx`. If you want to use your own agreement template, please replace ours with yours. Use the following tags in the document where you want specific information to be inserted:
+5. **Access Control**: The generated form is protected by default. For local testing, no additional configuration is necessary. However, for cloud usage, you need to add your own access rules. For more information on how to configure access control, refer to the [Abstra access control documentation](https://docs.abstra.io/concepts/access-control).
+   
+6. **Commercial Partnership Agreement Template**: In the files, there is an agreement template called `Commercial Partnership Agreement.docx`. If you want to use your own agreement template, please replace ours with yours. Use the following tags in the document where you want specific information to be inserted:
 
     - {{partner_name}}, {{partner_ein}}, {{partner_email}}, {{partner_address}}, {{partner_zipcode}}, {{partner_state}}, {{partner_beneficiary}}, {{partner_bank}}, {{partner_account}}, {{date}}
-   
+
+7. **Local Usage**: To access the local editor with the project, use the following command:
+
+   ```sh
+      abstra editor path/to/your/project/folder/
+   ```
+
 ## General Workflow:
 To implement this system use the following scripts:
 
