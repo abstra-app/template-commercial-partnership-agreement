@@ -5,3 +5,5 @@ docxtpl==0.16.7
 python-dotenv
 abstra==2.23.2
 requests==2.31.0
+loguru==0.7.2
+docusign-esign==4.0.0rc1

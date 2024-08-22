@@ -67,8 +67,8 @@
   "scripts": [
     {
       "id": "3mc8s3qkejv",
-      "file": "clicksign_post.py",
-      "title": "Clicksign post",
+      "file": "send_contract_to_sign.py",
+      "title": "Send Contract to Sign",
       "is_initial": false,
       "workflow_position": [
         -352.0,
