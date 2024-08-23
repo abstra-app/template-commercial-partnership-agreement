@@ -3,7 +3,7 @@ plotly
 numpy
 docxtpl==0.16.7
 python-dotenv
-abstra==2.23.2
+abstra==2.25.4
 requests==2.31.0
 loguru==0.7.2
 docusign-esign==4.0.0rc1

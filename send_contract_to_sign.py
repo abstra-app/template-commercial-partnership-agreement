@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta
 from uuid import uuid4 as creates_uuid
 from loguru import logger
 from docusign_esign import ApiException, ApiClient, EnvelopesApi, Document, Signer, SignHere, Tabs, Recipients, EnvelopeDefinition
+from abstra.connectors import get_access_token
 import os
 import dotenv
 import requests
@@ -12,7 +13,7 @@ import base64
 dotenv.load_dotenv()
 
 # get .env docsign tockens
-ACCESS_TOKEN = os.getenv("DOCUSIGN_ACCESS_TOKEN")
+ACCESS_TOKEN = get_access_token("docusign").token
 DOCUSIGN_AUTH_SERVER = os.getenv('DOCUSIGN_AUTH_SERVER')
 API_BASE_PATH = os.getenv('API_BASE_PATH')
 ACCOUNT_ID = os.getenv("DOCUSIGN_API_ID")
@@ -39,7 +40,7 @@ def make_envelope(signer_data):
         document_base64=base64_file_content,
         name=filepath,
         file_extension="docx",
-        document_id=str(creates_uuid())
+        document_id="1"
     )
 
     # Create models for the signers
@@ -47,14 +48,14 @@ def make_envelope(signer_data):
         email=signer_data["partner_signer_email"],
         name=signer_data["partner_signer_name"],
         recipient_id=str(creates_uuid()),
-        routing_order=str(creates_uuid())
+        routing_order="1"
     )
 
     manager_signer = Signer(
         email=signer_data["manager_signer_email"],
         name=signer_data["manager_signer_name"],
         recipient_id=str(creates_uuid()),
-        routing_order=str(creates_uuid())
+        routing_order="2"
     )
 
     # Create the tabs for the signers
@@ -76,7 +77,7 @@ def make_envelope(signer_data):
     manager_signer.tabs = Tabs(sign_here_tabs=[sign_here_signer])
 
     envelope_definition = EnvelopeDefinition(
-        email_subject=f"Please sign the following {filepath}",
+        email_subject=f"Please sign the following commercial agreement",
         documents=[document],
         recipients=Recipients(signers=[partner_signer, manager_signer]),
         status="sent"

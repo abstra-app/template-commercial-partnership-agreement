@@ -106,13 +106,13 @@ filepath = minutes_folder / f"{register_info['name']}.docx"
 # Save as new file
 doc.save(filepath)
 
+# Save document to stage
+set_data('filepath', str(filepath))
+
 # Convert document to base64
 with filepath.open("rb") as docx_file:
     base64_encoded = base64.b64encode(docx_file.read()).decode('utf-8')
     set_data('base64_file', base64_encoded)
-
-# Save document to stage
-set_data('filepath', str(filepath.name))
 
 # Allow user to download generated file copy
 Page() \
