@@ -13,7 +13,7 @@
   },
   "kanban": {
     "access_control": {
-      "is_public": false,
+      "is_public": true,
       "required_roles": []
     }
   },
@@ -59,7 +59,7 @@
         "enabled": false
       },
       "access_control": {
-        "is_public": true,
+        "is_public": false,
         "required_roles": []
       }
     }
@@ -87,7 +87,7 @@
     {
       "id": "5mjfvxrgfu6",
       "file": "slack_notification.py",
-      "title": "Notify #partners slack channel",
+      "title": "Notify on Slack Channel",
       "is_initial": false,
       "workflow_position": [
         64.0,
