@@ -7,19 +7,19 @@ Integrations:
   - Docusign
   - Slack
 
-To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/sophia-solo?url=template-commercial-partnership-agreement)
+To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/demo?url=template-commercial-partnership-agreement)
 
 ![A commercial partnership agreement generator workflow built in Abstra](https://github.com/user-attachments/assets/9cbcfdf7-9308-432b-a7d2-3079d814354a)
 
 ## Initial Configuration:
 To use this project, some initial configurations are necessary:
 1. **Python Version**: Ensure Python version 3.9 or higher is installed on your system.
-2. **Environment Variables**:
+2. **Integrations**: To connect to Slack and DocuSign, this template uses Abstra connectors. To connect, simply open your project in [Abstra Cloud Console](https://cloud.abstra.io/projects/), add the Slack and DocuSign connectors, and authorize them.
+3. **Environment Variables**:
 
     The following environment variables are required for both local development and online deployment:
-  
-    - `SLACK_BOT_TOKEN`: Slack Tocken to notify the partners about the new partnership agreement on Slack
-    - `DOCUSIGN_ACCESS_TOKEN`: DocuSign Acess Token used for sending the contract to sign
+
+    - `SLACK_CHANNEL_NAME`: Slack channel where an alert about the pending signed contract is sent.
     - `DOCUSIGN_API_ID`: DocuSign API account ID used for sending the contract to sign
     - `DOCUSIGN_AUTH_SERVER`: DocuSign Authentication Key for sending the contract to sign 
     - `API_BASE_PATH`: Base path where the contract will be uploaded on DocuSign service
@@ -67,4 +67,4 @@ For sending the contract to be signed by the parties involved, use:
 ### Slack Notification:
   - **slack_notification.py**: Script to send a notification on Slack about the contract generation and pending signatures.
 
-If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/sophia-solo?url=template-commercial-partnership-agreement)
+If you're interested in customizing this template for your team in under 30 minutes, [book a customization session here.](https://meet.abstra.app/demo?url=template-commercial-partnership-agreement)
