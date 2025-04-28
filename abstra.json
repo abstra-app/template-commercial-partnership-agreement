@@ -1,21 +1,14 @@
 {
   "workspace": {
-    "id": null,
     "name": "Untitled Workspace",
+    "language": "en",
     "theme": "#F8F8F8",
     "logo_url": "logo.png",
     "favicon_url": null,
     "brand_name": "Partner Portal",
     "main_color": "#0E33D6",
-    "font_color": null,
     "font_family": "Inter",
-    "language": "en"
-  },
-  "kanban": {
-    "access_control": {
-      "is_public": true,
-      "required_roles": []
-    }
+    "font_color": null
   },
   "home": {
     "access_control": {
@@ -49,9 +42,9 @@
         {
           "target_id": "3mc8s3qkejv",
           "target_type": "scripts",
-          "type": "forms:finished",
+          "type": "task",
           "id": "bhq2uxxr1u6",
-          "condition_value": null
+          "task_type": "document_info"
         }
       ],
       "notification_trigger": {
@@ -78,9 +71,9 @@
         {
           "target_id": "5mjfvxrgfu6",
           "target_type": "scripts",
-          "type": "scripts:finished",
+          "type": "task",
           "id": "d1w4vu66sx4",
-          "condition_value": null
+          "task_type": "document_info"
         }
       ]
     },
@@ -96,7 +89,7 @@
       "transitions": []
     }
   ],
-  "iterators": [],
-  "conditions": [],
-  "version": "11.0"
+  "agents": [],
+  "clients": [],
+  "version": "13.0"
 }

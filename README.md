@@ -9,7 +9,7 @@ Integrations:
 
 To customize this template for your team and build a lot more, [book a demonstration here.](https://meet.abstra.app/demo?url=template-commercial-partnership-agreement)
 
-![A commercial partnership agreement generator workflow built in Abstra](https://github.com/user-attachments/assets/9cbcfdf7-9308-432b-a7d2-3079d814354a)
+![A commercial partnership agreement generator workflow built in Abstra](https://github.com/user-attachments/assets/2c281219-8528-43aa-86d0-9361768976e1)
 
 ## Initial Configuration:
 To use this project, some initial configurations are necessary:

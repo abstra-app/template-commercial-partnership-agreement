@@ -1,5 +1,5 @@
 from abstra.forms import *
-from abstra.workflows import set_data
+from abstra.tasks import send_task
 from abstra.common import get_persistent_dir
 from docxtpl import DocxTemplate
 from datetime import date, datetime, timedelta
@@ -31,8 +31,11 @@ register_info = Page()\
     .read_email("What is the company's email?", key = "email")\
     .run(next)
 
-# Save company info to stage
-set_data('register_info', register_info)
+# Create empty payload to send task at the end
+payload = {}
+
+# Save company info in the payload
+payload['register_info'] = register_info
 
 # Get company address info
 address_info = Page()\
@@ -53,8 +56,8 @@ address_info = Page()\
     )\
     .run(next)
 
-# Add address info to stage
-set_data('address_info', address_info)
+# Add address info to the payload
+payload['address_info'] = address_info
 
 # Get payment info
 payment_info = Page()\
@@ -66,8 +69,8 @@ payment_info = Page()\
     .read("Account", key = "account")\
     .run(next)
 
-# Save payment info to stage
-set_data("payment_info", payment_info)  
+# Save payment info in the payload
+payload['payment_info'] = payment_info
 
 # Get signer data
 signatory_info = Page() \
@@ -78,8 +81,8 @@ signatory_info = Page() \
     .read_email("What is the signatory's email?", key="email") \
     .run(next)
 
-# Save signer data to stage
-set_data('signatory_info', signatory_info)
+# Save signer data in the payload
+payload['signatory_info'] = signatory_info
 
 # Display progress bar while document is being created
 for i in range(10):
@@ -106,13 +109,13 @@ filepath = minutes_folder / f"{register_info['name']}.docx"
 # Save as new file
 doc.save(filepath)
 
-# Save document to stage
-set_data('filepath', str(filepath))
+# Save document in the payload
+payload['filepath'] = str(filepath)
 
 # Convert document to base64
 with filepath.open("rb") as docx_file:
     base64_encoded = base64.b64encode(docx_file.read()).decode('utf-8')
-    set_data('base64_file', base64_encoded)
+    payload['base64_file'] = base64_encoded
 
 # Allow user to download generated file copy
 Page() \
@@ -120,3 +123,6 @@ Page() \
     .display(f"The minute will be sent for your signature automatically, you will receive it at the emails {register_info['email']} and {signatory_info['email']}. Download here a copy of the document:", size='medium') \
     .display_file(filepath.open('rb')) \
     .run(next)
+
+# Send task to sign the document
+send_task("document_info", payload)

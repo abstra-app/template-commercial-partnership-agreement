@@ -1,5 +1,5 @@
 from abstra.forms import *
-from abstra.workflows import *
+from abstra.tasks import get_trigger_task, send_task
 from datetime import date, datetime, timedelta
 from uuid import uuid4 as creates_uuid
 from loguru import logger
@@ -20,12 +20,15 @@ ACCOUNT_ID = os.getenv("DOCUSIGN_API_ID")
 MANAGER_EMAIL = os.getenv("MANAGER_EMAIL")
 MANAGER_NAME = os.getenv("MANAGER_NAME")
 
-# Get stage info
-register_info = get_data('register_info')
-address_info = get_data('address_info')
-filepath = get_data('filepath')
-base64_file = get_data('base64_file')
-signatory_info = get_data('signatory_info')
+# Get info
+task = get_trigger_task()
+payload = task.get_payload()
+
+register_info = payload['register_info']
+address_info = payload['address_info']
+filepath = payload['filepath']
+base64_file = payload['base64_file']    
+signatory_info = payload['signatory_info']  
 
 
 # creates envelope
@@ -107,3 +110,6 @@ try:
     logger.success(f"Sign Requested. Envelope ID: {results.envelope_id}. Status: {results.status}")
 except ApiException as e:
     logger.error(f"Error regarding docsign EnvelopesApi use: {e}")
+
+send_task("document_info", payload)
+task.complete()

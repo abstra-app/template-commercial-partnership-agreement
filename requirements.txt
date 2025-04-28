@@ -1,9 +1,9 @@
-pandas
-plotly
-numpy
+pandas==2.2.3
+plotly==6.0.1
+numpy==2.2.4
 docxtpl==0.16.7
-python-dotenv
-abstra==2.25.4
+python-dotenv==1.1.0
+abstra==3.14.4
 requests==2.31.0
 loguru==0.7.2
 docusign-esign==4.0.0rc1

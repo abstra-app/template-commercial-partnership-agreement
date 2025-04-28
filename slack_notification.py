@@ -1,5 +1,5 @@
 from abstra.forms import *
-from abstra.workflows import *
+from abstra.tasks import get_trigger_task
 from abstra.connectors import get_access_token
 import requests
 import os
@@ -10,9 +10,11 @@ dotenv.load_dotenv()
 # Get env variables
 slack_token = get_access_token("slack").token
 
-# Get thread info
-register_info = get_data('register_info')
-signatory_info = get_data('signatory_info')
+# Get info
+task = get_trigger_task()
+payload = task.get_payload()
+register_info = payload['register_info']
+signatory_info = payload['signatory_info']
 
 # Send slack notification
 slack_response = requests.post(
@@ -28,3 +30,5 @@ slack_response = requests.post(
         })
 
 print(slack_response.json())
+
+task.complete()
